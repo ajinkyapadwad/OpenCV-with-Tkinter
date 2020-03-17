@@ -8,11 +8,12 @@ install openCV first : sudo apt-get install libopencv-dev python-opencv
 """
 
 import cv2
-import Tkinter as tk
-from Tkinter import *
-import ttk
-from ttk import Frame
-import Image, ImageTk
+import tkinter as tk
+from tkinter import *
+#import ttk
+#from ttk import Frame
+from PIL import Image
+from PIL import ImageTk
 
 white 		= "#ffffff"
 lightBlue2 	= "#adc5ed"
@@ -35,14 +36,14 @@ mainFrame.place(x=20, y=20)
 lmain = tk.Label(mainFrame)
 lmain.grid(row=0, column=0)
 
-cap = cv2.VideoCapture('camVideo.mp4')
+cap = cv2.VideoCapture(0)
 
 def show_frame():
 	ret, frame = cap.read()
 
 	cv2image   = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
 
-	img   = Image.fromarray(cv2image).resize((760, 400))
+	img = Image.fromarray(cv2image)
 	imgtk = ImageTk.PhotoImage(image = img)
 	lmain.imgtk = imgtk
 	lmain.configure(image=imgtk)
